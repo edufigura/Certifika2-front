@@ -4,6 +4,7 @@ import { useState, type ReactNode } from "react";
 import { ArrowLeft, ArrowRight, Check, Clock, GraduationCap } from "./icons";
 import type { Course } from "@/lib/data";
 import styles from "./LearningWorkspace.module.css";
+import CertificateRequest from "./CertificateRequest";
 
 export default function CourseClassroom({ course, materials, discussion, demo = false, completed = [], onComplete }: {
   course: Course; materials: ReactNode; discussion?: ReactNode; demo?: boolean;
@@ -14,6 +15,7 @@ export default function CourseClassroom({ course, materials, discussion, demo = 
   const lessons = demo ? ["Bienvenida y objetivos", "Conceptos fundamentales", "Actividad práctica", "Repaso de la unidad"] : course.topics;
   const copy = demo ? ["Cada nueva habilidad comienza con una base sólida. En esta unidad conocerás los objetivos del curso y organizarás tus próximos pasos.", "La confidencialidad, integridad y disponibilidad son los tres principios fundamentales de la seguridad de la información. Juntos orientan cómo protegemos sistemas y datos.", "Piensa en una aplicación que utilices a diario. Identifica un riesgo de seguridad y describe una medida concreta para reducirlo.", "Repasa los conceptos de la unidad. Explica con tus palabras qué información protegerías y por qué."][lesson] : course.description;
   return <div className={styles.classroom}>
+    {!demo && <CertificateRequest code={course.id} />}
     <div className={styles.classHero}><div><span className={styles.label}>TU ESPACIO DE APRENDIZAJE {demo && " / DEMO"}</span><h2>{course.title}</h2><div className={styles.classMeta}><span><GraduationCap size={14} />{course.level}</span><span><Clock size={14} />{course.hours ? `${course.hours} horas` : "Duración por confirmar"}</span><span>{lessons.length} temas</span></div></div><div className={styles.heroBadge}><GraduationCap size={34} /><span>APRENDE.<br />CONSTRUYE.<br />AVANZA.</span></div></div>
     <div className={styles.classLayout}><div className={styles.lessonMain}>
       <div className={styles.lessonStage}><span className={styles.stageLabel}>{demo ? "LECTURA GUIADA" : "PRESENTACIÓN DEL CURSO"}</span><span className={styles.stageNumber}>{String(lesson + 1).padStart(2, "0")}<small> / {String(lessons.length).padStart(2, "0")}</small></span><h3>{demo ? lessons[lesson] : "Tu siguiente habilidad empieza aquí."}</h3><span className={styles.stageRule} /><p>{demo ? "Una idea a la vez. A tu ritmo." : course.summary}</p></div>

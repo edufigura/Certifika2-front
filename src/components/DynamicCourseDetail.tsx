@@ -37,7 +37,7 @@ export default function DynamicCourseDetail() {
 
   const course = courseFromBackend(backendCourse);
   return <section className="course-detail container">
-    <div className="section-head-inline"><Link href="/mis-cursos" className="back-link"><ArrowLeft size={15} />Mis cursos</Link><CourseEnrollment courseCode={course.id} /></div>
+    <div className="section-head-inline"><Link href="/mis-cursos" className="back-link"><ArrowLeft size={15} />Mis cursos</Link><CourseEnrollment courseCode={course.id} classroom /></div>
     <CourseClassroom course={course} materials={<CourseMaterials courseCode={course.id} />} discussion={<CourseChat courseCode={course.id} />} />
   </section>;
 }

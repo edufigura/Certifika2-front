@@ -77,11 +77,15 @@ export default function QueueDeliveryMonitor() {
     {consumerError && <p className={styles.warning} role="alert">{consumerError}</p>}
     <div className={styles.flow} aria-label="Etapas de entrega"><span>Registrado en el curso</span><span aria-hidden="true">→</span><span>Aceptado por SQS</span><span aria-hidden="true">→</span><span>Procesado</span><span aria-hidden="true">→</span><span>Leído por estudiante</span></div>
     <div className={styles.metrics}>
+      <div><span>Eventos registrados</span><strong>{report ? report.pending + report.accepted : "—"}</strong><small>Historial persistente del productor</small></div>
+      <div><span>Aceptados por SQS</span><strong>{report?.accepted ?? "—"}</strong><small>Incluye mensajes ya procesados</small></div>
+      <div><span>Procesados</span><strong>{receipts ? receipts.events.filter(event => event.processed).length : "—"}</strong><small>Confirmados en el historial visible</small></div>
       <div><span>Pendientes de envío</span><strong>{report?.pending ?? "—"}</strong><small>Registro persistente del productor</small></div>
       <div><span>Mensajes disponibles</span><strong>{metric(report?.sqs.main)}</strong><small>SQS · Recuento aproximado</small></div>
       <div><span>En procesamiento</span><strong>{metric(report?.sqs.main, "inFlight")}</strong><small>SQS · Mensajes no visibles</small></div>
       <div><span>En la cola de errores</span><strong>{metric(report?.sqs.dlq)}</strong><small>{report?.sqs.dlq.state === "NOT_CONFIGURED" ? "DLQ no configurada" : "DLQ · Recuento aproximado"}</small></div>
     </div>
+    <p className={styles.notice}>Las cifras de la cola son mensajes pendientes en este momento. Cero es normal cuando el consumidor ya los procesó. Los certificados usan Kinesis; SQS se actualiza al publicar anuncios o materiales desde el espacio docente.</p>
     <div className={styles.sourceStatus}><span>{report ? `Cola: ${report.queue}` : "Sin consulta confirmada"}</span><span>{report ? `Productor: ${date(report.observedAt)}` : ""}</span><span>{receipts ? `Consumidor: ${date(receipts.observedAt)}` : enabled ? "Consumidor sin confirmación" : ""}</span></div>
     {report?.sqs.main.state === "UNAVAILABLE" && <p className={styles.notice}>Los atributos de SQS no están disponibles. Los registros de envío y recepción se muestran por separado.</p>}
     {report?.sqs.dlq.state === "UNAVAILABLE" && <p className={styles.notice}>No se pudo consultar la DLQ. Esto no significa que esté vacía.</p>}

@@ -3,11 +3,14 @@
 import Link from "next/link";
 import CourseCard from "@/components/CourseCard";
 import ProfileCertificates from "./ProfileCertificates";
+import ProfileDemoGenerator from "./ProfileDemoGenerator";
 import ProfileIdentity from "@/components/ProfileIdentity";
 import { useEnrolledCourses } from "@/lib/enrollments";
+import { useCertificates } from "@/lib/certificates";
 
 export default function ProfileLearningData() {
   const { courses, failed, loading, signedIn } = useEnrolledCourses();
+  const certificates = useCertificates();
   const totalHours = courses.reduce((total, course) => total + course.hours, 0);
 
   if (!loading && !signedIn) return <div className="container empty-state"><span className="empty-state-icon" aria-hidden="true">↗</span><h2>Tu historia empieza contigo</h2><p>Entra con Google para ver tu perfil y los cursos en los que estás inscrito.</p><Link href="/login" className="btn btn--primary">Entrar con Google</Link></div>;
@@ -25,7 +28,7 @@ export default function ProfileLearningData() {
             <span>cursos</span>
           </div>
           <div className="profile-stat">
-            <strong>0</strong>
+            <strong>{certificates.loading ? "…" : certificates.failed ? "—" : certificates.items.length}</strong>
             <span>certificados</span>
           </div>
           <div className="profile-stat">
@@ -64,7 +67,8 @@ export default function ProfileLearningData() {
           )}
         </div>
 
-        <ProfileCertificates courses={courses} loading={loading} failed={failed} />
+        <ProfileDemoGenerator />
+        <ProfileCertificates certificates={certificates.items} loading={certificates.loading} failed={certificates.failed} onRefresh={certificates.reload} />
 
         <div className="card card-pad">
           <div className="section-head-inline">

@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useEnrolledCourses } from "@/lib/enrollments";
 
-export default function CourseEnrollment({ courseCode }: { courseCode: string }) {
+export default function CourseEnrollment({ courseCode, classroom = false }: { courseCode: string; classroom?: boolean }) {
   const { courses, failed: loadFailed, loading, signedIn } = useEnrolledCourses();
   const [justEnrolled, setJustEnrolled] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -45,6 +45,7 @@ export default function CourseEnrollment({ courseCode }: { courseCode: string })
   }
 
   if (enrolled) {
+    if (classroom) return <span className="status-badge status-badge--ok">Inscripción activa</span>;
     return (
       <>
         <Link href="/mis-cursos" className="btn btn--primary btn--block">

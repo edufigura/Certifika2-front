@@ -41,7 +41,7 @@ export default function LoginContent() {
         ) : null}
 
         <CognitoSignInButton disabled={loading || !configured} />
-        {process.env.NODE_ENV === "development" && <div className="profile-demo-notice" style={{ alignItems: "start", flexDirection: "column", gap: 12 }}><div><strong>Explora las demos locales</strong><p>Estudiante, aula, docente y administración con datos de ejemplo. Sin Google.</p></div><Link href="/demo" className="btn btn--secondary btn--sm">Probar demos sin iniciar sesión →</Link></div>}
+        {!loading && configured && <p className="auth-note"><a href={`${process.env.NEXT_PUBLIC_BFF_BASE_URL?.trim().replace(/\/$/, "") ?? ""}/api/oauth2/authorization/cognito?provider=COGNITO`}>Acceso de respaldo con correo y contraseña</a></p>}
         {!loading && !configured ? <p className="auth-note" role="status">El acceso con Google no está disponible en este entorno. Puedes explorar el catálogo sin iniciar sesión.</p> : null}
 
         <div className="auth-divider">Tu aprendizaje, en un solo lugar</div>

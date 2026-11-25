@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Certifika2 — Frontend
 
-## Getting Started
+Aplicacion web de Certifika2, construida con Next.js, React y TypeScript.
 
-First, run the development server:
+**Web desplegada:** https://uwbsn5nyfh.execute-api.us-east-1.amazonaws.com
+
+## Funcionalidades
+
+- Inicio de sesion con Google mediante Cognito, con respaldo Cognito nativo.
+- Catalogo, inscripciones, aula con recursos y comunidad.
+- Perfil con datos personales, cursos y descarga/verificacion de certificados.
+- DEMO sobre cursos inscritos: notas de ejemplo y emision de PDF por el flujo real de Kinesis.
+- Espacio docente con creacion y gestion de cursos, materiales, anuncios y estudiantes.
+- Administracion de postulaciones y visores de SQS y certificados Kinesis.
+
+## Desarrollo
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir http://localhost:3000. Las operaciones autenticadas necesitan el BFF y el proveedor Cognito configurados en el entorno de despliegue. No se incluyen credenciales.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Compilacion y despliegue
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+Next.js genera el sitio estatico en `out/`. En AWS se sirve desde S3 mediante API Gateway HTTPS; `/api/*` se dirige al BFF en ECS. Los servicios se consumen bajo el mismo origen mediante `/api/bff/*`, con sesion segura gestionada por el BFF. Los archivos de infraestructura y scripts AWS pertenecen al proyecto de despliegue, separado de este repositorio.
 
-To learn more about Next.js, take a look at the following resources:
+## Roles
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Toda cuenta autenticada recibe ESTUDIANTE. PROFESOR y ADMIN son permisos adicionales de Cognito. Aprobar una postulacion docente asigna PROFESOR; cerrar sesion e ingresar de nuevo actualiza los permisos del navegador.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Las notas DEMO son sinteticas y sus certificados se identifican como demostracion.

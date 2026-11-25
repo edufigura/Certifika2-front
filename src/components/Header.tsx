@@ -132,7 +132,6 @@ export default function Header() {
       {dropdownButton("explore", "Explorar")}
       {signedIn ? dropdownButton("learning", "Mi aprendizaje") : <Link href="/#como-funciona" className={styles.navLink} onPointerEnter={close} onClick={close}>Cómo funciona</Link>}
       <Link href={isTeacher ? "/profesor" : "/postular-profesor"} className={styles.navLink} onPointerEnter={close}>{isTeacher ? "Enseñar" : "Quiero enseñar"}</Link>
-      {signedIn && dropdownButton("space", "Mi espacio")}
     </nav>
     <div className={styles.actions}>
       {signedIn ? <button className={styles.account} aria-label="Abrir mi cuenta" aria-expanded={panel === "space"} aria-controls="nav-space" onPointerEnter={event => hover("space", event.currentTarget)} onClick={event => activate("space", event.currentTarget, event.detail)} onKeyDown={event => keyboardOpen(event, "space")}><span className={styles.avatar} aria-hidden="true">{(user?.givenName || user?.name || "C").slice(0, 1)}</span><span className={styles.accountName}>{user?.givenName || "Mi cuenta"}</span>{noLeidas > 0 && <span className={styles.notificationDot} aria-label={`${noLeidas} notificaciones sin leer`} />}<Chevron /></button>

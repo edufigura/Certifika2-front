@@ -10,3 +10,10 @@
 .pending h3 { font-size: 20px; font-weight: 500; color: #334d71; }
 .pending p { max-width: 400px; color: #7b8da7; font-size: 11px; line-height: 1.8; margin-top: 12px; }
 @media(max-width:600px) { .section { padding: 21px 17px; } .heading h2 { font-size: 20px; } .heading .badge { display: none; } }
+.list { display: grid; gap: 14px; margin-top: 20px; }
+.certificate { display: flex; justify-content: space-between; gap: 18px; padding: 18px; border: 1px solid #e1e7f2; border-radius: 12px; }
+.certificate h3 { font-size: 18px; font-weight: 600; color: #334d71; }
+.certificate p { margin-top: 8px; font-size: 12px; color: #72829a; }
+.code { overflow-wrap: anywhere; }
+.actions { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; flex-shrink: 0; }
+@media(max-width:650px) { .certificate { flex-direction: column; } .actions { flex-direction: row; align-items: center; flex-wrap: wrap; } }

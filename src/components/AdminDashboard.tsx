@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import RoleGate from "@/components/RoleGate";
 import QueueDeliveryMonitor from "@/components/QueueDeliveryMonitor";
+import CertificateDemoMonitor from "@/components/CertificateDemoMonitor";
 import {
   getTeacherApplications,
   reviewTeacherApplication,
@@ -82,6 +83,7 @@ function AdminWorkspace() {
   return (
     <div className="container dashboard-stack">
       <QueueDeliveryMonitor />
+      <CertificateDemoMonitor />
       <section className="admin-applications">
         <div className="section-head-inline">
           <div>

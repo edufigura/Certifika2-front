@@ -28,6 +28,8 @@ export default function ProfileIdentity() {
 
   useEffect(() => {
     if (!user) return;
+    setSyncFailed(false);
+    setProfile(null);
 
     let active = true;
     fetch("/api/bff/usuarios/registro", {

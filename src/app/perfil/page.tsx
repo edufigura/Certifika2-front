@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import ProfileLearningData from "@/components/ProfileLearningData";
 
 export const metadata: Metadata = {
@@ -16,7 +15,6 @@ export default function PerfilPage() {
           <p className="page-subtitle">
             Tus datos, cursos y certificaciones.
           </p>
-          <Link href="/perfil/demo" className="section-link" style={{ marginTop: 20 }}>Ver perfil de demostración sin iniciar sesión ↗</Link>
         </div>
       </section>
 

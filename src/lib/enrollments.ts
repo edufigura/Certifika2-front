@@ -10,6 +10,8 @@ export function useEnrolledCourses() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
   const [failed, setFailed] = useState(false);
+  const [revision, setRevision] = useState(0);
+  useEffect(() => { const refresh = () => setRevision(value => value + 1); window.addEventListener("certifika2:enrollments-change", refresh); return () => window.removeEventListener("certifika2:enrollments-change", refresh); }, []);
 
   useEffect(() => {
     if (sessionLoading) return;
@@ -45,7 +47,7 @@ export function useEnrolledCourses() {
     return () => {
       active = false;
     };
-  }, [sessionLoading, signedIn]);
+  }, [sessionLoading, signedIn, revision]);
 
   return {
     courses,

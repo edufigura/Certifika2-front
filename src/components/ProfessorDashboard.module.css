@@ -1,0 +1,12 @@
+.workspace { display: grid; gap: 24px; padding-bottom: 48px; }
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; padding: 6px; background: #edf2fa; border: 1px solid #e1e7f0; border-radius: 14px; width: fit-content; max-width: 100%; margin-bottom: 20px; }
+.tabs button { border: 0; border-radius: 10px; padding: 12px 18px; background: transparent; color: #52647c; font: inherit; font-size: 13px; cursor: pointer; }
+.tabs button[aria-pressed="true"] { background: #fff; color: #234eff; box-shadow: 0 2px 8px #20345610; }
+.tabs span { margin-left: 8px; border-radius: 20px; padding: 3px 7px; background: #edf2ff; }
+.courseGrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 18px; }
+.course { border: 1px solid #e0e7f1; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; background: linear-gradient(145deg, #fff, #f8faff); }
+.course[data-selected="true"] { border-color: #5473ff; }
+.course strong { font-size: 18px; line-height: 1.4; }
+.course span { color: #64758c; font-size: 12px; }
+.course p { color: #52647c; font-size: 14px; line-height: 1.7; flex: 1; margin: 0; }
+@media(max-width:600px) { .tabs { width: 100%; } .tabs button { flex: 1; padding: 10px 12px; } .course { padding: 20px; } }
