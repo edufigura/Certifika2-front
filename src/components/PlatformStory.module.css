@@ -1,0 +1,23 @@
+.value { padding: 86px 0; background: #102c43; color: #f6f9ff; border-radius: 30px; margin: 0 16px; }
+.intro { display: grid; grid-template-columns: 1.15fr 1fr; gap: 70px; align-items: end; }
+.eyebrow { color: #a7d7ec; font-size: 10px; letter-spacing: .13em; margin-bottom: 23px; }
+.intro h2 { font-size: clamp(32px,3.7vw,50px); line-height: 1.13; font-weight: 500; letter-spacing: -.045em; }
+.lead { color: #d3e2ed; font-size: 15px; line-height: 1.85; max-width: 490px; }
+.link { display: inline-block; margin-top: 23px; font-size: 12px; color: #fff; border-bottom: 1px solid #ffffff65; padding-bottom: 6px; }
+.facts { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 35px; margin: 52px 0 0; padding: 34px 0; border-block: 1px solid #ffffff26; }
+.facts dt { font-size: 12px; color: #d3e2ed; }
+.facts dd { margin: 8px 0 0; font-size: 58px; line-height: 1.1; letter-spacing: -.05em; }
+.facts dd span { display: block; font-size: 12px; line-height: 1.6; letter-spacing: 0; color: #b9ccdc; margin-top: 12px; }
+.benefits { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 35px; margin-top: 37px; }
+.benefits article > span { font-size: 9px; color: #a7d7ec; letter-spacing: .12em; }
+.benefits h3 { font-size: 23px; font-weight: 500; margin: 14px 0 12px; }
+.benefits p { color: #c2d3e1; font-size: 13px; line-height: 1.8; max-width: 340px; }
+.questions { display: grid; grid-template-columns: 1fr 1.2fr; gap: 70px; }
+.questionLink { margin-top: 25px; }
+.answers { border-top: 1px solid var(--border); }
+.answers details { border-bottom: 1px solid var(--border); padding: 23px 0; }
+.answers summary { cursor: pointer; font-weight: 600; font-size: 16px; padding-right: 12px; }
+.answers details p { font-size: 13px; color: var(--muted); line-height: 1.85; margin-top: 15px; max-width: 560px; }
+.answers a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+@media(max-width:960px) { .intro,.questions { gap: 35px; grid-template-columns: 1fr; } .value { padding: 60px 0; } .benefits,.facts { gap: 22px; } }
+@media(max-width:600px) { .value { margin-inline: 8px; border-radius: 22px; padding-block: 45px; } .facts { gap: 24px; margin-top: 30px; grid-template-columns: 1fr; } .facts > div { display: grid; grid-template-columns: 1fr 1.4fr; align-items: center; gap: 15px; } .facts dd { font-size: 42px; margin: 0; } .facts dd span { font-size: 11px; margin-top: 6px; } .benefits { grid-template-columns: 1fr; gap: 28px; } .benefits p { max-width: none; } .intro h2 { font-size: 34px; } .lead { font-size: 14px; } }

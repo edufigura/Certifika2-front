@@ -1,0 +1,43 @@
+.hero { position: relative; isolation: isolate; min-height: 850px; height: 100svh; max-height: 1150px; margin-top: -90px; padding: 135px clamp(28px,4vw,72px) 64px; background: #102e4a; color: #fff; display: grid; grid-template-columns: 1.05fr .95fr; align-items: end; gap: 50px; overflow: hidden; border-radius: 0 0 28px 28px; }
+.backdrop { position: absolute; inset: 0; z-index: -1; }
+.video { width: 100%; height: 100%; object-fit: cover; object-position: 36% center; }
+.shade { position: absolute; inset: 0; background: #081f4659; }
+.content { grid-column: 1; min-width: 0; width: 100%; max-width: 720px; justify-self: start; padding: 28px; border: 1px solid #ffffff40; border-radius: 28px; background: #102e4a73; -webkit-backdrop-filter: blur(24px) saturate(135%); backdrop-filter: blur(24px) saturate(135%); box-shadow: 0 20px 55px #041a3526,inset 0 1px 0 #ffffff26; }
+.signature { color: #d5e7ff; font-size: 11px; font-weight: 600; letter-spacing: .12em; margin-bottom: 19px; }
+.signature span { font-size: 9px; font-weight: 400; }
+.content h1 { font-size: clamp(38px,3.8vw,65px); font-weight: 500; line-height: 1.1; letter-spacing: -.05em; }
+.content h1 em { font-family: Georgia,serif; font-weight: 400; color: #d7e8ff; }
+.description { color: #d0dfed; font-size: 13px; line-height: 1.8; margin-top: 18px; }
+.carousel { margin-top: 29px; }
+.timeline { display: flex; align-items: center; gap: 13px; font-size: 12px; font-variant-numeric: tabular-nums; margin-bottom: 20px; }
+.stops { display: flex; flex: 1; gap: 4px; }
+.stops button { flex: 1; border: 0; background: none; padding: 12px 0; color: inherit; }
+.stops button span { display: block; height: 2px; background: #ffffff40; transition: background .25s; }
+.stops button[aria-current] span,.stops button:hover span { background: #d6eaff; }
+.cards { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 15px; touch-action: pan-y; }
+.card { position: relative; isolation: isolate; overflow: hidden; min-height: 255px; border: 1px solid #ffffff30; border-radius: 21px; background: #d0e7ff17; -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); box-shadow: inset 0 1px 0 #ffffff24; animation: cardEnter .4s ease both; }
+.card:nth-child(2) { background: #d0e7ff21; }
+.artwork { position: absolute; inset: 0; z-index: -1; opacity: .45; }
+.artwork :global(.area-art) { height: 100%; background: transparent; color: #b6ddff !important; }
+.artwork :global(.area-art-svg) { width: 205px; height: 170px; bottom: -13px; left: auto; right: -55px; opacity: .65; }
+.artwork :global(.art-label),.artwork :global(.art-corner) { display: none; }
+.cardContent { padding: 22px; height: 100%; display: flex; align-items: start; flex-direction: column; }
+.cardNumber { font-size: 8px; letter-spacing: .14em; color: #bed7f1; margin-bottom: 17px; }
+.card h2 { font-size: clamp(18px,1.65vw,25px); font-weight: 500; line-height: 1.2; }
+.card p { font-size: 11px; line-height: 1.7; margin: 11px 0 21px; max-width: 185px; color: #e0eaf7; }
+.card a { display: inline-flex; gap: 22px; padding: 9px 15px; background: #fff; color: #14213b; border-radius: 30px; font-size: 10px; font-weight: 600; margin-top: auto; }
+.card a:hover { background: #dceaff; }
+.controls { display: flex; align-items: center; justify-content: flex-end; gap: 15px; margin-top: 18px; }
+.controls > a { font-size: 11px; color: #e4edff; }
+.scroll { position: absolute; left: clamp(28px,4vw,72px); bottom: 26px; display: flex; gap: 40px; align-items: center; font-size: 10px; letter-spacing: .035em; }
+.scroll span { font-size: 20px; }
+.hero :focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+.srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@keyframes cardEnter { from { opacity: .5; transform: translateX(12px); } to { opacity: 1; transform: translateX(0); } }
+@media(min-width:1600px) { .hero { padding-bottom: 80px; } .card { min-height: 300px; } }
+@media(max-width:1050px) { .hero { grid-template-columns: 1fr .65fr; gap: 25px; padding-inline: 28px; } .content h1 { font-size: 42px; } .cardContent { padding: 18px; } }
+@media(max-width:820px) { .hero { margin-top: -78px; height: auto; max-height: none; min-height: 100svh; grid-template-columns: 1fr; padding: 185px 26px 75px; } .content { grid-column: 1; max-width: 620px; } .shade { background: #102e4a59; } .content h1 { font-size: clamp(38px,7vw,55px); } .scroll { bottom: 20px; left: 26px; } }
+@media(max-width:480px) { .hero { padding-inline: 20px; padding-top: 150px; } .content { padding: 18px; border-radius: 22px; } .signature { font-size: 10px; } .signature span { font-size: 7px; } .cards { gap: 10px; } .card { min-height: 260px; border-radius: 17px; } .cardContent { padding: 15px; } .card h2 { font-size: 18px; overflow-wrap: anywhere; } .card p { font-size: 10px; } .card a { gap: 12px; padding: 9px 12px; } .description { font-size: 12px; } }
+@media(prefers-reduced-motion:reduce) { .card { animation: none; } .stops button span { transition: none; } }
+
+@supports not (backdrop-filter: blur(1px)) { .content { background: #102e4ae6; } .card { background: #284866; } }
